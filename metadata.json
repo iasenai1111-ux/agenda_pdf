@@ -1,0 +1,5 @@
+{
+  "name": "PDF para Agenda",
+  "description": "Lê um PDF, encontra datas e horários e cria os compromissos direto no Google Agenda. Também tem uma versão para Google Apps Script.",
+  "requestFramePermissions": []
+}

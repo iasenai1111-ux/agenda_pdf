@@ -1,8 +1,8 @@
 node_modules/
 dist/
 coverage/
-.npm-cache/
 .DS_Store
 *.log
 .env*
 !.env.example
+.npm-cache/

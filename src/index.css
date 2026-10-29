@@ -1,0 +1,165 @@
+@import "tailwindcss";
+
+/* Tema escuro: [data-theme="dark"] no <html>, definido pelo script do index.html. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/*
+  Direção: a folhinha de parede brasileira (calendário de destacar de padaria e
+  farmácia), impressa em preto e vermelho, com domingos e feriados em vermelho.
+  As datas viram folhinhas; o texto do PDF ganha marca-texto; o que já está na
+  agenda ganha carimbo. Fonte: Gabarito (Naipe Foundry, Rio de Janeiro).
+*/
+:root {
+  --paper: #ffffff;
+  --sunk: #f4f4f1;
+  --ink: #17171a;
+  --muted: #66666e;
+  --line: #e4e4e0;
+  --line-strong: #cfcfca;
+  --accent: #17171a;
+  --accent-hover: #000000;
+  --accent-ink: #ffffff;
+  --accent-soft: #efefec;
+  --red: #d2261b;
+  --red-ink: #ffffff;
+  --red-soft: #fcebe8;
+  --ok: #0e7a4f;
+  --ok-soft: #e6f4ed;
+  --mark: #ffe45c;
+  --mark-ink: #17171a;
+  --warn: #8a5300;
+  --warn-soft: #fff3d6;
+  --danger: #b42318;
+  --danger-soft: #fdecea;
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --paper: #131315;
+  --sunk: #1b1b1e;
+  --ink: #ededea;
+  --muted: #9c9ca3;
+  --line: #2a2a2e;
+  --line-strong: #3b3b40;
+  --accent: #ededea;
+  --accent-hover: #ffffff;
+  --accent-ink: #131315;
+  --accent-soft: #26262a;
+  --red: #ff5b4d;
+  --red-ink: #1a0503;
+  --red-soft: #3a1916;
+  --ok: #4cc38a;
+  --ok-soft: #12291f;
+  --mark: #6e5c0c;
+  --mark-ink: #fff3c0;
+  --warn: #f2c26b;
+  --warn-soft: #33290f;
+  --danger: #ff8a7a;
+  --danger-soft: #3a1714;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-sunk: var(--sunk);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-red: var(--red);
+  --color-red-ink: var(--red-ink);
+  --color-red-soft: var(--red-soft);
+  --color-ok: var(--ok);
+  --color-ok-soft: var(--ok-soft);
+  --color-mark: var(--mark);
+  --color-mark-ink: var(--mark-ink);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --font-sans: "Gabarito", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --radius-ui: 6px;
+}
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 {
+    text-wrap: balance;
+  }
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  button, [role="button"], label, select {
+    touch-action: manipulation;
+  }
+  input, select, textarea {
+    font: inherit;
+  }
+  @media (max-width: 640px) {
+    input, select, textarea {
+      font-size: 16px;
+    }
+  }
+}
+
+/* Marca-texto: o traço amarelo fica um pouco abaixo da linha, como caneta de verdade. */
+.marca {
+  background: linear-gradient(to bottom, transparent 12%, var(--mark) 12%, var(--mark) 92%, transparent 92%);
+  color: var(--mark-ink);
+  border-radius: 2px;
+  padding: 0 2px;
+  margin: 0 -2px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Folhinha: picote no topo, como o bloco de destacar. */
+.picote {
+  background-image: radial-gradient(circle at 50% 50%, var(--paper) 2.2px, transparent 2.6px);
+  background-size: 11px 8px;
+  background-repeat: repeat-x;
+  background-position: 3px 50%;
+}
+
+/* Carimbo de "já está na agenda". */
+.carimbo {
+  display: inline-block;
+  transform: rotate(-4deg);
+  border: 1.5px solid currentColor;
+  border-radius: 3px;
+  padding: 0 5px;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  line-height: 16px;
+  text-transform: uppercase;
+  opacity: 0.92;
+}
